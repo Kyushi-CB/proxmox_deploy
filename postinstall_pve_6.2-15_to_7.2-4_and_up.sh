@@ -7,6 +7,7 @@ apt update && apt upgrade -y
 
 #configure sshd.conf
 sed -i 's/#port 22/port 32000/g' /etc/ssh/sshd_config
+systemctl restart sshd
 
 ###INSTALL REQUIRED SOFTWARE###
 #persistent iptables
@@ -20,7 +21,7 @@ bash <(curl -s https://raw.githubusercontent.com/Weilbyte/PVEDiscordDark/master/
 
 ###CONFIGURE REQUIRED SOFTWARE##
 #route default ui port 8006 to 443 and save configuration
-iptables -t nat -I PREROUTING -i vmbr0 --dst 192.168.0.16  -p tcp --dport 443 -j REDIRECT --to-ports 8006
+iptables -t nat -I PREROUTING -i vmbr0 --dst 192.168.0.10  -p tcp --dport 443 -j REDIRECT --to-ports 8006
 /usr/sbin/netfilter-persistent save
 
 #create fail2ban configuration for ssh and proxmox ui
