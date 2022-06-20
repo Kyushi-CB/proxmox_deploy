@@ -6,7 +6,7 @@ echo "deb http://download.proxmox.com/debian/pve bullseye pve-no-subscription" >
 apt update && apt upgrade -y
 
 #configure sshd.conf
-sed -i 's+#port 22/port 32000+g' /etc/ssh/sshd_config
+sed -i 's/#port 22/port 32000/g' /etc/ssh/sshd_config
 
 ###INSTALL REQUIRED SOFTWARE###
 #persistent iptables
